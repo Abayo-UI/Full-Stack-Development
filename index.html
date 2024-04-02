@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <link rel="stylesheet" href="fsd.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+        <script type="text/babel">
+
+       let questionNumber = -1;
+       let counter = 0;
+
+       const fullStackQuestions = [
+  {
+    question: "2) What are the main components of a full stack web application?",
+    answer1: "Front-end and database only.",
+    answer2: "Front-end, back-end, and database.",
+    answer3: "Front-end and server-side only.",
+  },
+  {
+    question: "3) What technologies are commonly used for front-end development?",
+    answer1: "HTML and CSS only.",
+    answer2: "HTML, CSS, and JavaScript.",
+    answer3: "JavaScript and Python.",
+  },
+  {
+    question: "4) Which of the following is a back-end programming language?",
+    answer1: "HTML",
+    answer2: "Java",
+    answer3: "CSS",
+  },
+  {
+    question: "5) What is the purpose of a back-end framework?",
+    answer1: "To define the visual style and layout of a web application.",
+    answer2: "To provide tools and libraries for building server-side logic, handling requests, and interacting with databases.",
+    answer3: "To handle the presentation and user interaction of a web application.",
+  },
+  {
+    question: "6) What is the role of a database in full stack development?",
+    answer1: "To define the visual style and layout of a web application.",
+    answer2: "To store and manage the application's data, including user information, content, and settings.",
+    answer3: "To handle the client-server communication in a web application.",
+  },
+  {
+    question: "7) Which of the following is a popular front-end framework?",
+    answer1: "Django",
+    answer2: "React",
+    answer3: "Express",
+  },
+  {
+    question: "8) What is the purpose of API (Application Programming Interface) in full stack development?",
+    answer1: "To define the visual style and layout of a web application.",
+    answer2: "To define a set of rules and protocols for building and integrating software components, allowing different parts of a system to communicate with each other.",
+    answer3: "To handle the client-server communication in a web application.",
+  },
+  {
+    question: "9) What is the role of version control systems in full stack development?",
+    answer1: "To handle the client-server communication in a web application.",
+    answer2: "To track changes, manage revisions, and facilitate collaboration among developers working on the same project.",
+    answer3: "To store and manage the application's data, including user information, content, and settings.",
+  },
+  {
+    question: "10) What is the purpose of server-side rendering (SSR) in full stack development?",
+    answer1: "To handle the presentation and user interaction of a web application.",
+    answer2: "To generate HTML on the server and send it to the client, allowing search engines to index the content and improving initial page load performance.",
+    answer3: "To provide tools and libraries for building server-side logic, handling requests, and interacting with databases.",
+  },
+  {
+    question: "11) What is the role of authentication and authorization in full stack development?",
+    answer1: "To define the visual style and layout of a web application.",
+    answer2: "To control access to certain parts of a web application based on user identity and permissions.",
+    answer3: "To store and manage the application's data, including user information, content, and settings.",
+  },
+  {
+    question: "12) What is the purpose of deployment in full stack development?",
+    answer1: "To define the visual style and layout of a web application.",
+    answer2: "To make a web application accessible and available for users on the internet by configuring servers, setting up environments, and managing resources.",
+    answer3: "To handle the client-server communication in a web application.",
+  },
+  {
+    question: "13) Which of the following is a server-side JavaScript runtime environment?",
+    answer1: "HTML",
+    answer2: "Node.js",
+    answer3: "CSS",
+  },
+  {
+    question: "14) What is the purpose of caching in full stack development?",
+    answer1: "To handle the presentation and user interaction of a web application.",
+    answer2: "To temporarily store and serve frequently accessed data or resources to improve performance and reduce load on the server.",
+    answer3: "To provide tools and libraries for building server-side logic, handling requests, and interacting with databases.",
+  },
+  {
+    question: "15) What is the role of DevOps in full stack dvpt?",
+    answer1: "To define the visual style and layout of a web application.",
+    answer2: "To combine dvpt and operations practices, including infrastructure management, continuous integration deployment and monitoring, to streamline the delivery and operation of software.",
+    answer3: "To store and manage the application's data, including user information, content, and settings.",
+  },
+];
+    class FSDDevelopment extends React.Component{
+           constructor(props){
+            super(props);
+            this.state = {
+               question: "1) What is full stack development?",
+               answer1: "The process of developing only the user interface (UI) for a web application.",
+               answer2: "The process of developing both the front-end and back-end of a web application or software, including the user interface (UI) and server-side logic.",
+               answer3: "The process of managing and maintaining the infrastructure and deployment of web applications.",
+            } 
+            this.handleClick = this.handleClick.bind(this);
+            this.nextQuestion = this.nextQuestion.bind(this);
+            this.handleChange = this.handleChange.bind(this);
+            this.handleChangeCorrect = this.handleChangeCorrect.bind(this);
+           }
+
+           handleClick(){
+             this.setState(this.nextQuestion);
+           } 
+
+            nextQuestion(){ 
+            questionNumber += 1;
+                    
+            
+            if(questionNumber  < fullStackQuestions.length){
+                return fullStackQuestions[questionNumber];
+            }
+            else{
+              let result;
+                result = Math.floor(counter * 6.67);
+                const elementToRemove = document.querySelector("#remove");
+                elementToRemove.style.display = 'none';
+                const buttonToRemove = document.querySelector("#nextButton");
+                buttonToRemove.style.display = 'none';
+                return {
+                question: `Your overall score is ${result}%. If you managed to score above 66%  we recommend you to consider Full Stack Development  as Your career choice.`,
+                answer1:"",
+                answer2:"",
+                answer3:""
+            }
+            }
+          }
+
+           handleChange(){
+                alert("Incorrect! Choice b is the correct answer.Kindly Proceed to the next question");
+                this.handleClick();  
+            }
+
+            handleChangeCorrect(){
+            counter = counter + 1;
+             setTimeout(() => {
+             this.handleClick();
+             }, 2000); 
+            }
+
+           render(){
+            return(
+                <div className="background">
+
+                    <nav class="navbar  fixed-top navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand">F.S development</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Courses</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body Courses">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Full Stack Development</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Game Development</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">App Development</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">S/W engineering</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Cyber security</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Data Science</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Web Design</a>
+          </li>
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+                    
+                     <div className="question col-lg-4 col-11 h-auto pb-4 pt-5 px-4 mt-5">
+                        <p className="text-white fs-5">{this.state.question}</p>
+
+        <form id="remove">
+ 
+        <div style={{ display: 'flex', alignItems: 'center' , display:"none"}}>
+             <input type="radio" name="questionOne" checked="true"/>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', lineHeight:"18px" }}>
+             <input onClick={this.handleChange} type="radio" className="me-2 mb-3" name="questionOne"/>
+             <p style={{display:'inline',fontWeight:"700",fontSize:"1.2rem" }}>{this.state.answer1}</p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', lineHeight:"18px" }}>
+             <input  onClick={this.handleChangeCorrect}type="radio" className="me-2 mb-3" name="questionOne"/>
+             <p style={{display:'inline',fontWeight:"700",fontSize:"1.2rem" }}>{this.state.answer2}</p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', lineHeight:"18px" }}>
+             <input onClick={this.handleChange} type="radio" className="me-2 mb-3" name="questionOne"/>
+             <p style={{display:'inline',fontWeight:"700",fontSize:"1.2rem" }}>{this.state.answer3}</p>
+        </div>
+        </form>
+        <div className="lastContainer">
+           <div className="rounded-5  pt-2 w-25 h-auto bg-light text-center fs-5" >{counter}/15</div>
+           <button id="nextButton" onClick={this.handleClick}className="w-50 pt-2 h-auto rounded-5 border border-none text-center"><p>NEXT</p></button> 
+           </div>
+        </div>
+        </div>
+            )
+           }
+          }
+          ReactDOM.render(<FSDDevelopment/>, document.getElementById('root'))
+        </script>
+    </head>
+
+    <body class="back">
+        <div id="root">
+        </div>
+    </body>
+
+</html>
